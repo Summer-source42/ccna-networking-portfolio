@@ -102,6 +102,18 @@ Host A → Router → Router → Host B
 
 ---
 
+## Fast troubleshooting (how I actually use OSI/TCP-IP)
+
+### Quick decision tree for “No Internet”
+1) **Ping default gateway**
+- If it fails → check **L1/L2** (link/VLAN) and **IP config** (L3 on host)
+2) **Ping a public IP (e.g., 8.8.8.8)**
+- If gateway works but public IP fails → likely **L3 upstream** (routing/NAT/ISP)
+3) **Test DNS (nslookup google.com)**
+- If public IP works but DNS fails → **DNS issue** (application layer)v
+
+
+
 ## Verification (commands)
 ```text
 # Interface / link checks
@@ -123,3 +135,4 @@ traceroute
 # (If available on device)
 show tcp brief all
 show udp
+
